@@ -1,0 +1,20 @@
+{
+  "users": [
+    {
+      "firstname": "Shail",
+      "lastname": "Shah",
+      "gender": "male",
+      "emailid": "shailshah@12gmail.com",
+      "password": "123456",
+      "id": 1
+    },
+    {
+      "firstname": "Harsh",
+      "lastname": "Maisuri",
+      "gender": "male",
+      "emailid": "harsh12@gmail.com",
+      "password": "123456",
+      "id": 2
+    }
+  ]
+}
