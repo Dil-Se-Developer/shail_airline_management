@@ -6,7 +6,6 @@ import {
 } from "../../redux/actions/fetchUsersDataActions";
 import { loginUserActions } from "../../redux/actions/loginUserActions";
 import { singleUserDataActions } from "../../redux/actions/singleUserDataActions";
-import { fetchAirlinesDataAction } from "../../redux/actions/fetchAirlinesDataActions";
 import { useNavigate } from "react-router-dom";
 import FormInput from "../UI/FormInput";
 import "./RegisterForm.css";
@@ -26,6 +25,7 @@ const RegisterForm = () => {
   const [formValues, setFormValues] = useState(intialValues);
   const [formErrors, setFormErrors] = useState({});
   const usersData = useSelector((state) => state.fetchUsersData.UsersData);
+
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -56,7 +56,6 @@ const RegisterForm = () => {
 
   useEffect(() => {
     dispatch(fetchUsersAction());
-    dispatch(fetchAirlinesDataAction());
   }, []);
 
   // console.log(formErrors, "error");

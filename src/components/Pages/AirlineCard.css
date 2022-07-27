@@ -1,0 +1,35 @@
+.airlinecard {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    cursor: pointer;
+    padding: 0.8rem;
+    border: 1px solid rgba(14, 4, 5, .2);
+    border-radius: 4px;
+}
+
+.airlinecard img {
+    width: 250px;
+    height: 220px;
+    object-fit: contain;
+    border-radius: 2px;
+}
+
+.airlinecard h2 {
+    margin: 0.2rem 0.2rem 0rem 0.2rem;
+    /* font-weight: 500; */
+}
+
+.airlinecard h3 {
+    margin: 0rem 0.2rem;
+    font-weight: 500;
+}
+
+.airlinecard p {
+    text-transform: capitalize;
+    margin: 0.1rem 0.2rem;
+    font-weight: 500;
+    color: var(--text-color);
+    font-size: 0.9rem;
+}
+

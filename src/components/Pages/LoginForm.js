@@ -44,7 +44,7 @@ const LoginForm = (props) => {
           dispatch(loginUserActions(true));
           Navigate("/dashboard");
         } else {
-          alert("Kindly Password");
+          alert("Kindly Check Password");
         }
       } else {
         alert("Kindly Check Emailid");
