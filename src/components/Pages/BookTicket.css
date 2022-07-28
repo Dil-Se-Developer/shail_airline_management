@@ -1,0 +1,43 @@
+.bookticket_bg {
+    background-color: rgba(205, 192, 192, 0.2);
+    padding: 3rem 0rem 3.5rem 0rem;
+}
+
+.bookticket_card {
+    max-width: 500px !important;
+}
+
+.bookticket_inputbox {
+    display: flex;
+    align-items: center;
+}
+
+.bookticket_dropdown {
+    padding: 10px;
+    flex: 50%;
+}
+
+.datetime_input {
+    width: 5rem;
+    flex: 50%;
+}
+
+.bookticket_dropdown label {
+    color: var(--label-clr);
+    font-weight: 500;
+    display: block;
+    margin-bottom: 0.4rem;
+}
+
+.bookticket_dropdown select {
+    padding: 0.3rem;
+    border-radius: 4px;
+    width: 90%;
+    border: none;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.bookticket_dropdown option {
+    font-size: 1rem;
+}

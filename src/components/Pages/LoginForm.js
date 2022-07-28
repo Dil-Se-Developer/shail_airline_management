@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchUsersAction } from "../../redux/actions/fetchUsersDataActions";
 import { loginUserActions } from "../../redux/actions/loginUserActions";
+import { bookTicketActions } from "../../redux/actions/bookTicketActions";
 import { singleUserDataActions } from "../../redux/actions/singleUserDataActions";
-import { fetchAirlinesDataAction } from "../../redux/actions/fetchAirlinesDataActions";
 import { useNavigate, Link } from "react-router-dom";
 import FormInput from "../UI/FormInput";
 import "./LoginForm.css";
@@ -42,6 +42,7 @@ const LoginForm = () => {
         // console.log(formValues.password, 'formval');
         if (findUser.password === formValues.password) {
           dispatch(loginUserActions(true));
+          dispatch(bookTicketActions(true));
           Navigate("/dashboard");
         } else {
           alert("Kindly Check Password");
@@ -61,7 +62,8 @@ const LoginForm = () => {
 
   useEffect(() => {
     dispatch(fetchUsersAction());
-    dispatch(fetchAirlinesDataAction());
+    dispatch(loginUserActions(false));
+    dispatch(bookTicketActions(false));
   }, []);
 
   const validate = (values) => {

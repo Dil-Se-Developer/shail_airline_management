@@ -1,0 +1,8 @@
+.bookticketDetails_card {
+    max-width: 600px;
+    width: 70%;
+    margin: 5rem auto;
+    background-color: rgba(205, 192, 192, 0.2);
+    border-radius: 5px;
+    padding: 1rem 1rem;
+}

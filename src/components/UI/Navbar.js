@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import logo from "../../assets/air_india_logo.svg";
 import { loginUserActions } from "../../redux/actions/loginUserActions";
+import { bookTicketActions } from "../../redux/actions/bookTicketActions";
 import { MdAirplaneTicket } from "react-icons/md";
 import "./Navbar.css";
 
@@ -10,6 +11,7 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const Navigate = useNavigate();
   const loginStatus = useSelector((state) => state.loginStatus.loginStatus);
+  const bookTicketStatus = useSelector((state) => state.bookTicketStatus.bookTicketStatus);
   const singleUserData = useSelector(
     (state) => state.singleUserData.singleUserData
   );
@@ -18,6 +20,7 @@ const Navbar = () => {
   // console.log(userFirstName);
   // console.log(singleUserData);
   // console.log(loginStatus, "login");
+  // console.log(bookTicketStatus, "BookTicket");
 
   const loginHandler = () => {
     Navigate("/");
@@ -27,8 +30,9 @@ const Navbar = () => {
     Navigate("/register");
   };
 
-  const addListingHandler = () => {
-    Navigate('dashboard/addairline');
+  const bookTicketHandler = () => {
+    Navigate('dashboard/bookticket');
+    dispatch(bookTicketActions(false));
   }
 
   const handleSelectChange = (event) => {
@@ -36,6 +40,7 @@ const Navbar = () => {
     if (value === "logout") {
       Navigate("/");
       dispatch(loginUserActions(false));
+      dispatch(bookTicketActions(false));
     }
   };
 
@@ -65,11 +70,11 @@ const Navbar = () => {
               <option value="logout">Logout</option>
             </select>
           </div>
-          <div>
-            <button className="book_ticket_btn" onClick={addListingHandler}>
-              Book Ticket <MdAirplaneTicket size={'1.5rem'}/>
+          {bookTicketStatus ? (<div>
+            <button className="book_ticket_btn" onClick={bookTicketHandler}>
+              Book Ticket <MdAirplaneTicket size={'1.5rem'} />
             </button>
-          </div>
+          </div>) : ''}
         </div>
       )}
     </div>

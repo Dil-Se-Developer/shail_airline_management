@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { bookTicketActions } from "../../redux/actions/bookTicketActions";
 import "./AirlineDetails.css";
 
 const AirlineDetails = () => {
   const [airlineData, setAirlineData] = useState([]);
   const { airlineId } = useParams();
+  const dispatch = useDispatch();
   // console.log(airlineId);
 
   useEffect(() => {
+    dispatch(bookTicketActions(true));
     axios
       .get(`http://localhost:5000/airlinesdata/${airlineId}`)
       .then((res) => setAirlineData(res.data))
@@ -17,7 +21,7 @@ const AirlineDetails = () => {
       });
   }, []);
 
-  console.log(airlineData);
+  // console.log(airlineData);
 
   const { logo, name, website, country, head_quaters, established, slogan } = airlineData;
 

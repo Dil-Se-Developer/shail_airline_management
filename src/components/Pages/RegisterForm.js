@@ -5,6 +5,7 @@ import {
   fetchUsersAction,
 } from "../../redux/actions/fetchUsersDataActions";
 import { loginUserActions } from "../../redux/actions/loginUserActions";
+import { bookTicketActions } from "../../redux/actions/bookTicketActions";
 import { singleUserDataActions } from "../../redux/actions/singleUserDataActions";
 import { useNavigate } from "react-router-dom";
 import FormInput from "../UI/FormInput";
@@ -49,12 +50,15 @@ const RegisterForm = () => {
       dispatch(addUserData(formValues));
       dispatch(singleUserDataActions(formValues));
       dispatch(loginUserActions(true));
+      dispatch(bookTicketActions(true));
       Navigate("/dashboard");
     }
   };
 
   useEffect(() => {
     dispatch(fetchUsersAction());
+    dispatch(loginUserActions(false));
+    dispatch(bookTicketActions(false));
   }, []);
 
   // console.log(formErrors, "error");
