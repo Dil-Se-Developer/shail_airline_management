@@ -4,6 +4,7 @@ import Navbar from "./components/UI/Navbar";
 import LoginForm from "./components/Pages/LoginForm";
 import RegisterForm from "./components/Pages/RegisterForm";
 import Dashboard from "./components/Pages/Dashboard";
+import AirlineDetails from "./components/Pages/AirlineDetails";
 import AddAirline from "./components/Pages/AddAirline";
 import Footer from "./components/UI/Footer";
 import "./App.css";
@@ -16,6 +17,7 @@ function App() {
         <Route path="/" element={<LoginForm/>}/>
         <Route path="/register" element={<RegisterForm/>}/>
         <Route path="/dashboard" element={<Dashboard/>}/>
+        <Route path="/dashboard/:airlineId" element={<AirlineDetails/>} />
         <Route path="/dashboard/addairline" element={<AddAirline/>}/>
       </Routes>
       <Footer />

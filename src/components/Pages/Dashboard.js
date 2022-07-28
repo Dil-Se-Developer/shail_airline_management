@@ -8,9 +8,9 @@ const Dashboard = () => {
   // console.log(airlinesData, 'loginform');
 
   const airlinesFilterData = airlinesData.filter(
-    (airlineData) => (airlineData.id != null && airlineData.id > 0 && airlineData.id <= 15)
+    (airlineData) => (airlineData.id != null && airlineData.id > 0 && airlineData.id <= 16)
   );
-  console.log(airlinesFilterData, 'airlinesfilterdata');
+  // console.log(airlinesFilterData, 'airlinesfilterdata');
 
   return (
     <div className="airline_cards">

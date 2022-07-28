@@ -8,7 +8,7 @@ import { useNavigate, Link } from "react-router-dom";
 import FormInput from "../UI/FormInput";
 import "./LoginForm.css";
 
-const LoginForm = (props) => {
+const LoginForm = () => {
   const dispatch = useDispatch();
 
   const intialValues = {
@@ -83,7 +83,7 @@ const LoginForm = (props) => {
   };
 
   return (
-    <>
+    <div className="loginform_bg">
       <div className="form_card login_card">
         <form>
           <FormInput
@@ -117,7 +117,7 @@ const LoginForm = (props) => {
       <Link className="form_card navigate_signup" to="/register">
         Create an account
       </Link>
-    </>
+    </div>
   );
 };
 

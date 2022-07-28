@@ -26,7 +26,6 @@ const RegisterForm = () => {
   const [formErrors, setFormErrors] = useState({});
   const usersData = useSelector((state) => state.fetchUsersData.UsersData);
 
-
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormValues({ ...formValues, [name]: value });
@@ -86,83 +85,85 @@ const RegisterForm = () => {
   };
 
   return (
-    <div className="form_card">
-      <form>
-        <FormInput
-          inputLabel="First Name: "
-          inputType="text"
-          inputName="firstname"
-          inputValue={formValues.firstname}
-          onHandleChange={handleChange}
-          errorMessage={formErrors.firstname}
-          errorClass={"error_para"}
-          customClass={"form_input"}
-        />
-
-        <FormInput
-          inputLabel="Last Name: "
-          inputType="text"
-          inputName="lastname"
-          inputValue={formValues.lastname}
-          onHandleChange={handleChange}
-          errorMessage={formErrors.lastname}
-          errorClass={"error_para"}
-          customClass={"form_input"}
-        />
-
-        <p className="radio_heading">Gender: </p>
-        <div className="form_radio_group">
+    <div className="register_bg">
+      <div className="form_card">
+        <form>
           <FormInput
-            inputLabel="Male"
-            inputType="radio"
-            inputName="gender"
-            inputValue="male"
+            inputLabel="First Name: "
+            inputType="text"
+            inputName="firstname"
+            inputValue={formValues.firstname}
             onHandleChange={handleChange}
-            // errorMessage={formErrors.lastname}
-            customClass={"form_radio"}
-            checked={formValues.gender === "male"}
+            errorMessage={formErrors.firstname}
+            errorClass={"error_para"}
+            customClass={"form_input"}
           />
 
           <FormInput
-            inputLabel="Female"
-            inputType="radio"
-            inputName="gender"
-            inputValue="female"
+            inputLabel="Last Name: "
+            inputType="text"
+            inputName="lastname"
+            inputValue={formValues.lastname}
             onHandleChange={handleChange}
-            // errorMessage={formErrors.lastname}
-            customClass={"form_radio"}
-            checked={formValues.gender === "female"}
+            errorMessage={formErrors.lastname}
+            errorClass={"error_para"}
+            customClass={"form_input"}
           />
-        </div>
 
-        <FormInput
-          inputLabel="Email ID: "
-          inputType="email"
-          inputName="emailid"
-          inputValue={formValues.emailid}
-          onHandleChange={handleChange}
-          errorMessage={formErrors.emailid}
-          errorClass={"error_para"}
-          customClass={"form_input"}
-        />
+          <p className="radio_heading">Gender: </p>
+          <div className="form_radio_group">
+            <FormInput
+              inputLabel="Male"
+              inputType="radio"
+              inputName="gender"
+              inputValue="male"
+              onHandleChange={handleChange}
+              // errorMessage={formErrors.lastname}
+              customClass={"form_radio"}
+              checked={formValues.gender === "male"}
+            />
 
-        <FormInput
-          inputLabel="Password: "
-          inputType="password"
-          inputName="password"
-          inputValue={formValues.password}
-          onHandleChange={handleChange}
-          errorMessage={formErrors.password}
-          errorClass={"error_para"}
-          customClass={"form_input"}
-        />
+            <FormInput
+              inputLabel="Female"
+              inputType="radio"
+              inputName="gender"
+              inputValue="female"
+              onHandleChange={handleChange}
+              // errorMessage={formErrors.lastname}
+              customClass={"form_radio"}
+              checked={formValues.gender === "female"}
+            />
+          </div>
 
-        <div className="form_input login_btn">
-          <button onClick={registerHandler} className="form_btn">
-            Register
-          </button>
-        </div>
-      </form>
+          <FormInput
+            inputLabel="Email ID: "
+            inputType="email"
+            inputName="emailid"
+            inputValue={formValues.emailid}
+            onHandleChange={handleChange}
+            errorMessage={formErrors.emailid}
+            errorClass={"error_para"}
+            customClass={"form_input"}
+          />
+
+          <FormInput
+            inputLabel="Password: "
+            inputType="password"
+            inputName="password"
+            inputValue={formValues.password}
+            onHandleChange={handleChange}
+            errorMessage={formErrors.password}
+            errorClass={"error_para"}
+            customClass={"form_input"}
+          />
+
+          <div className="form_input login_btn">
+            <button onClick={registerHandler} className="form_btn">
+              Register
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

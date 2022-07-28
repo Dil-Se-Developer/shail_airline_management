@@ -1,7 +1,7 @@
 .footer_city {
     display: flex;
     flex-wrap: wrap;
-    padding: 1rem;
+    padding: 1.5rem;
     background-color: var(--footer-bg-clr);
 }
 
@@ -11,23 +11,26 @@
 }
 
 .footer_cards h4 {
-    font-size: 0.8rem;
-    color: #fff;
+    font-size: 0.9rem;
+    color: var(--primary-white);
 }
 
 .footer_cards p {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     color: var(--footer-font-clr);
+    cursor: pointer;
+    padding: 0.1rem 0rem 0.1rem 0rem;
 }
 
 .footer_cards svg {
+    margin-top: 0.5rem;
     margin-right: 0.8rem;
     cursor: pointer;
     color: var(--footer-font-clr);
 }
 
 .footer_country {
-    padding: 0.5rem 1rem;
+    padding: 0.8rem 1.5rem;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -38,7 +41,7 @@
 }
 
 .footer_end_card_1 span {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     color: var(--para-clr);
     cursor: pointer;
 }

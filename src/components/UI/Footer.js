@@ -37,10 +37,10 @@ const Footer = () => {
         </div>
         <div className="footer_cards">
           <h4>FOLLOW US</h4>
-          <BsFacebook />
-          <BsInstagram />
-          <BsTwitter />
-          <BsYoutube />
+          <BsFacebook size={'1.5rem'}/>
+          <BsInstagram size={'1.5rem'}/>
+          <BsTwitter size={'1.5rem'}/>
+          <BsYoutube size={'1.5rem'}/>
         </div>
       </div>
       <div className="footer_country">

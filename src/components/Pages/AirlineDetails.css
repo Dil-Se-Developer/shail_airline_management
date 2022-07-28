@@ -1,0 +1,118 @@
+.cards_details_section {
+    display: flex;
+    align-items: flex-start;
+    padding: 2rem;
+    column-gap: 20px;
+}
+
+.cards_description {
+    display: flex;
+    flex-direction: column;
+    flex: 2.2;
+    row-gap: 5px;
+}
+
+.card_description_img {
+    background-color: white;
+    border-radius: 6px;
+    border: 1px solid rgba(0, 47, 52, .36);
+    text-align: center;
+}
+
+.card_description_img img {
+    width: 700px;
+    height: 400px;
+    object-fit: scale-down;
+}
+
+.card_brand_details {
+    padding: 1rem;
+    border-radius: 6px;
+    border: 1px solid rgba(0, 47, 52, .36);
+    background-color: white;
+}
+
+.card_brand_details h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.card_brand_details a {
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.card_brand_details span {
+    font-weight: 500;
+    color: #406367;
+    font-size: 0.9rem;
+    margin-left: 2rem;
+}
+
+/* .card_brand_details span:nth-child(2) {
+    margin-left: 0;
+} */
+
+.card_brand_details span:nth-child(odd) {
+    color: #7f8788;
+    margin-left: 4rem;
+}
+
+.card_brand_details hr {
+    margin: 0.5rem 0rem;
+}
+
+.card_brand_details p {
+    color: #002f34;
+    font-size: 0.9rem;
+}
+
+.airline_details_section {
+    display: flex;
+    flex-direction: column;
+    flex: 1.5;
+    row-gap: 5px;
+}
+
+.airline_name_details,
+.airline_contact_details {
+    border-radius: 6px;
+    background-color: white;
+    border: 1px solid rgba(0, 47, 52, .36);
+    padding: 0.5rem 1rem 1.5rem 1rem;
+}
+
+.airline_name_details h2 {
+    font-size: 1.7rem;
+    margin-bottom: 0.5rem;
+}
+
+.airline_name_details span {
+    font-size: 1.1rem;
+    color: #406367;
+    font-weight: 500;
+    letter-spacing: 0.05rem;
+}
+
+.airline_contact_details h3 {
+    font-size: 1.3rem;
+    color: #002f34;
+    font-weight: 500;
+    margin-bottom: 2rem;
+}
+
+.airline_contact_details a {
+    color: #002f34;
+    border-radius: 4px;
+    border: 2px solid #002f34;
+    padding: 10px 80px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: 0.05rem;
+    text-transform: uppercase;
+}
+
+.airline_contact_details a:hover {
+    border-width: 3px;
+}

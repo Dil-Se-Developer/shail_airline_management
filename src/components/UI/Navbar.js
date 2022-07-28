@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import logo from "../../assets/air_india_logo.svg";
 import { loginUserActions } from "../../redux/actions/loginUserActions";
+import { MdAirplaneTicket } from "react-icons/md";
 import "./Navbar.css";
 
 const Navbar = () => {
@@ -63,10 +64,10 @@ const Navbar = () => {
               <option value="greetings">Hi,{userFirstName}!</option>
               <option value="logout">Logout</option>
             </select>
-          </div>{" "}
+          </div>
           <div>
-            <button className="addlisting_btn" onClick={addListingHandler}>
-              Add Listing
+            <button className="book_ticket_btn" onClick={addListingHandler}>
+              Book Ticket <MdAirplaneTicket size={'1.5rem'}/>
             </button>
           </div>
         </div>
