@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 import FormInput from "../UI/FormInput";
 import "./RegisterForm.css";
 
-const RegisterForm = () => {
+const RegisterForm = ({ saveAuth }) => {
   const dispatch = useDispatch();
 
   const intialValues = {
@@ -51,6 +51,7 @@ const RegisterForm = () => {
       dispatch(singleUserDataActions(formValues));
       dispatch(loginUserActions(true));
       dispatch(bookTicketActions(true));
+      saveAuth('auth');
       Navigate("/dashboard");
     }
   };

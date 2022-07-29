@@ -7,11 +7,13 @@ import { bookTicketActions } from "../../redux/actions/bookTicketActions";
 import { MdAirplaneTicket } from "react-icons/md";
 import "./Navbar.css";
 
-const Navbar = () => {
+const Navbar = ({ setAuth }) => {
   const dispatch = useDispatch();
   const Navigate = useNavigate();
   const loginStatus = useSelector((state) => state.loginStatus.loginStatus);
-  const bookTicketStatus = useSelector((state) => state.bookTicketStatus.bookTicketStatus);
+  const bookTicketStatus = useSelector(
+    (state) => state.bookTicketStatus.bookTicketStatus
+  );
   const singleUserData = useSelector(
     (state) => state.singleUserData.singleUserData
   );
@@ -31,16 +33,18 @@ const Navbar = () => {
   };
 
   const bookTicketHandler = () => {
-    Navigate('dashboard/bookticket');
+    Navigate("dashboard/bookticket");
     dispatch(bookTicketActions(false));
-  }
+  };
 
   const handleSelectChange = (event) => {
     let { value } = event.target;
     if (value === "logout") {
-      Navigate("/");
+      localStorage.clear();
+      setAuth();
       dispatch(loginUserActions(false));
       dispatch(bookTicketActions(false));
+      Navigate("/");
     }
   };
 
@@ -70,11 +74,15 @@ const Navbar = () => {
               <option value="logout">Logout</option>
             </select>
           </div>
-          {bookTicketStatus ? (<div>
-            <button className="book_ticket_btn" onClick={bookTicketHandler}>
-              Book Ticket <MdAirplaneTicket size={'1.5rem'} />
-            </button>
-          </div>) : ''}
+          {bookTicketStatus ? (
+            <div>
+              <button className="book_ticket_btn" onClick={bookTicketHandler}>
+                Book Ticket <MdAirplaneTicket size={"1.5rem"} />
+              </button>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       )}
     </div>

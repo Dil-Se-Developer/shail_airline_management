@@ -11,7 +11,9 @@ const FormInput = (props) => {
     errorMessage,
     errorClass,
     customClass,
-    checked
+    checked,
+    min,
+    max
   } = props;
 
   return (
@@ -26,6 +28,8 @@ const FormInput = (props) => {
           onChange={onHandleChange}
           checked={checked}
           autoComplete = 'off'
+          min={min}
+          max={max}
         />
       </div>
       {errorMessage !== "" && <p className={errorClass}>{errorMessage}</p>}

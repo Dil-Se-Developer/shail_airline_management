@@ -8,7 +8,7 @@ import { useNavigate, Link } from "react-router-dom";
 import FormInput from "../UI/FormInput";
 import "./LoginForm.css";
 
-const LoginForm = () => {
+const LoginForm = ({ saveAuth }) => {
   const dispatch = useDispatch();
 
   const intialValues = {
@@ -43,6 +43,7 @@ const LoginForm = () => {
         if (findUser.password === formValues.password) {
           dispatch(loginUserActions(true));
           dispatch(bookTicketActions(true));
+          saveAuth('auth');
           Navigate("/dashboard");
         } else {
           alert("Kindly Check Password");

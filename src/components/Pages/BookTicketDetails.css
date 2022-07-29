@@ -1,8 +1,62 @@
 .bookticketDetails_card {
-    max-width: 600px;
+    max-width: 800px;
     width: 70%;
     margin: 5rem auto;
     background-color: rgba(205, 192, 192, 0.2);
     border-radius: 5px;
     padding: 1rem 1rem;
+    /* display: flex;
+    flex-direction: column; */
+}
+
+.bookticket_card_heading {
+    display: flex;
+    justify-content: center;
+}
+
+.bookticket_card_heading h1 {
+    text-align: center;
+    font-size: 1.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+    margin-bottom: 1.2rem;
+}
+
+.bookticket_card_name h3{
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+}
+
+.bookticket_card_name h3 span {
+    font-size: 1.3rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+}
+
+.bookticket_card_seats, .bookticket_card_airline, .bookticket_card_departure {
+    display: flex;
+    margin: 0rem 0rem 0.25rem 0rem; 
+}
+
+.bookticket_card_seats p, .bookticket_card_airline p, .bookticket_card_departure p {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.bookticket_card_seats p span, .bookticket_card_airline p span, .bookticket_card_departure p span {
+    font-size: 1.1rem;
+    font-weight: 400;
+}
+
+.bookticket_card_seats p:nth-child(even) {
+    margin-left: 2rem;
+}
+
+.bookticket_card_airline p:nth-child(even) {
+    margin-left: 5.5rem;
+}
+
+.bookticket_card_departure p:nth-child(even) {
+    margin-left: 2rem;
 }

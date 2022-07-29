@@ -11,6 +11,8 @@ const BookTicket = () => {
 
   const intialValues = {
     name: "",
+    emailid: "",
+    seats: "",
     airlinename: "Quatar Airways",
     datetime: "",
     departure: "",
@@ -47,6 +49,12 @@ const BookTicket = () => {
     if (!values.name) {
       errors.name = "Name is required!";
     }
+    if (!values.emailid) {
+      errors.emailid = "Emailid is required!";
+    }
+    if (!values.seats) {
+      errors.seats = "Seat No. is required!";
+    }
     if (!values.datetime) {
       errors.datetime = "DateTime is required!";
     }
@@ -58,6 +66,9 @@ const BookTicket = () => {
     }
     return errors;
   };
+
+  const today = `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`;
+  // console.log(today);
 
   return (
     <div className='bookticket_bg'>
@@ -71,8 +82,32 @@ const BookTicket = () => {
             onHandleChange={handleChange}
             errorMessage={formErrors.name}
             errorClass={"error_para"}
-            customClass={"form_input"}
+            customClass={"form_input bookticket_name_input"}
           />
+          <div className='bookticket_inputbox'>
+            <FormInput
+              inputLabel="Email ID :"
+              inputType="email"
+              inputName="emailid"
+              inputValue={formValues.emailid}
+              onHandleChange={handleChange}
+              errorMessage={formErrors.emailid}
+              errorClass={"error_para"}
+              customClass={"form_input bookTicket_email"}
+            />
+            <FormInput
+              inputLabel="No. of Seats :"
+              inputType="number"
+              inputName="seats"
+              inputValue={formValues.seats}
+              onHandleChange={handleChange}
+              errorMessage={formErrors.seats}
+              errorClass={"error_para"}
+              customClass={"form_input bookTicket_email"}
+              min={1}
+              max={5}
+            />
+          </div>
           <div className='bookticket_inputbox'>
             <div className='bookticket_dropdown'>
               <label htmlFor='airlinename'>Select Airline :</label>
@@ -92,6 +127,7 @@ const BookTicket = () => {
               errorMessage={formErrors.datetime}
               errorClass={"error_para"}
               customClass={"form_input datetime_input"}
+              min={today}
             />
           </div>
           <div className='bookticket_inputbox'>

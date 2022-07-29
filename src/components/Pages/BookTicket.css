@@ -1,3 +1,7 @@
+.bookTicket_email {
+    flex: 50%;
+}
+
 .bookticket_bg {
     background-color: rgba(205, 192, 192, 0.2);
     padding: 3rem 0rem 3.5rem 0rem;
@@ -10,6 +14,10 @@
 .bookticket_inputbox {
     display: flex;
     align-items: center;
+}
+
+.bookticket_name_input input {
+    width: 95% !important;
 }
 
 .bookticket_dropdown {
@@ -32,7 +40,7 @@
 .bookticket_dropdown select {
     padding: 0.3rem;
     border-radius: 4px;
-    width: 90%;
+    width: 95%;
     border: none;
     font-size: 1rem;
     font-weight: 500;
