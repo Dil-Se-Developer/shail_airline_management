@@ -4,7 +4,8 @@
       "firstname": "Shail",
       "lastname": "Shah",
       "gender": "male",
-      "emailid": "shailshah@12gmail.com",
+      "mobileno": "0123456789",
+      "emailid": "shailshah12@gmail.com",
       "password": "123456",
       "id": 1
     },
@@ -12,7 +13,8 @@
       "firstname": "Harsh",
       "lastname": "Maisuri",
       "gender": "male",
-      "emailid": "harsh12@gmail.com",
+      "mobileno": "7894561230",
+      "emailid": "harshmaisuri12@gmail.com",
       "password": "123456",
       "id": 2
     }

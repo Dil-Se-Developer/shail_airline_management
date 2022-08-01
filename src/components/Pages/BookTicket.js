@@ -1,23 +1,25 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { bookTicketActions } from "../../redux/actions/bookTicketActions";
-import { bookTicketDetailActions } from '../../redux/actions/bookTicketDetailActions';
+import { bookTicketDetailActions } from "../../redux/actions/bookTicketDetailActions";
 import FormInput from "../UI/FormInput";
-import './BookTicket.css';
+import "./BookTicket.css";
 
 const BookTicket = () => {
   const dispatch = useDispatch();
-
+  // let i = 0;
   const intialValues = {
     name: "",
     emailid: "",
-    seats: "",
+    seats: 1,
     airlinename: "Quatar Airways",
     datetime: "",
     departure: "",
     arrival: "",
-  }
+    passenger2: "",
+    passenger3: "",
+  };
 
   const Navigate = useNavigate();
   const [formValues, setFormValues] = useState(intialValues);
@@ -25,35 +27,38 @@ const BookTicket = () => {
 
   useEffect(() => {
     dispatch(bookTicketActions(false));
-  }, [])
+  }, []);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormValues({ ...formValues, [name]: value });
   };
 
-  // console.log(formValues, 'formvalues');
+  const extraPassengers = new Array(formValues.seats ? parseInt(formValues.seats)-1: '').fill('');
+  // console.log(formValues, "formvalues");
+  // console.log(extraPassengers,'extrapassengers');
   // console.log(formErrors, 'errors');
-  
 
   const bookTicketHandler = (event) => {
     event.preventDefault();
     setFormErrors(validate(formValues));
     if (Object.keys(validate(formValues)).length === 0) {
-      dispatch(bookTicketDetailActions(formValues))
+      dispatch(bookTicketDetailActions(formValues));
       Navigate("bookticketdetails");
     }
-  }
+  };
   const validate = (values) => {
     const errors = {};
     if (!values.name) {
-      errors.name = "Name is required!";
+      errors.name = "Passenger 1 Name is required!";
     }
     if (!values.emailid) {
       errors.emailid = "Emailid is required!";
     }
     if (!values.seats) {
       errors.seats = "Seat No. is required!";
+    } else if (parseInt(values.seats) <= 0 || parseInt(values.seats) > 3) {
+      errors.seats = "Enter valid seat no. from 1 to 3";
     }
     if (!values.datetime) {
       errors.datetime = "DateTime is required!";
@@ -64,6 +69,12 @@ const BookTicket = () => {
     if (!values.arrival) {
       errors.arrival = "Arrival Location is required!";
     }
+    if (!values.passenger2 && extraPassengers.length === 1) {
+      errors.passenger2 = "Passenger 2 Name is required!";
+    }
+    if (!values.passenger3 && extraPassengers.length === 2) {
+      errors.passenger3 = "Passenger 3 Name is required!";
+    }
     return errors;
   };
 
@@ -71,11 +82,11 @@ const BookTicket = () => {
   // console.log(today);
 
   return (
-    <div className='bookticket_bg'>
+    <div className="bookticket_bg">
       <div className="form_card bookticket_card">
         <form>
           <FormInput
-            inputLabel="Name :"
+            inputLabel="Passenger 1 :"
             inputType="text"
             inputName="name"
             inputValue={formValues.name}
@@ -84,7 +95,7 @@ const BookTicket = () => {
             errorClass={"error_para"}
             customClass={"form_input bookticket_name_input"}
           />
-          <div className='bookticket_inputbox'>
+          <div className="bookticket_inputbox">
             <FormInput
               inputLabel="Email ID :"
               inputType="email"
@@ -105,13 +116,84 @@ const BookTicket = () => {
               errorClass={"error_para"}
               customClass={"form_input bookTicket_email"}
               min={1}
-              max={5}
+              max={3}
             />
           </div>
-          <div className='bookticket_inputbox'>
-            <div className='bookticket_dropdown'>
-              <label htmlFor='airlinename'>Select Airline :</label>
-              <select name='airlinename' id='airlinename' onChange={handleChange}>
+          {/* {parseInt(formValues.seats) === 2 ? (
+            <FormInput
+              inputLabel="Name :"
+              inputType="text"
+              inputName="name"
+              inputValue={formValues.name}
+              onHandleChange={handleChange}
+              errorMessage={formErrors.name}
+              errorClass={"error_para"}
+              customClass={"form_input bookticket_name_input"}
+            />
+          ) : parseInt(formValues.seats) === 3 ? (
+            <>
+            <FormInput
+              inputLabel="Name :"
+              inputType="text"
+              inputName="name"
+              inputValue={formValues.name}
+              onHandleChange={handleChange}
+              errorMessage={formErrors.name}
+              errorClass={"error_para"}
+              customClass={"form_input bookticket_name_input"}
+            />
+            <FormInput
+              inputLabel="Name :"
+              inputType="text"
+              inputName="name"
+              inputValue={formValues.name}
+              onHandleChange={handleChange}
+              errorMessage={formErrors.name}
+              errorClass={"error_para"}
+              customClass={"form_input bookticket_name_input"}
+            />
+            </>
+          ) : (
+            <div></div>
+          )} */}
+          
+          {/* { 
+            let i = 0;
+            while(i < parseInt(formValues.seats)) {    
+              (<FormInput
+              inputLabel="Name :"
+              inputType="text"
+              inputName="name"
+              inputValue={formValues.name}
+              onHandleChange={handleChange}
+              errorMessage={formErrors.name}
+              errorClass={"error_para"}
+              customClass={"form_input bookticket_name_input"}
+            />)
+            i++;
+            }
+          } */}
+          {extraPassengers.length >= 1 && extraPassengers.length <= 2 && 
+            extraPassengers.map((extraPassenger, index) => <FormInput
+            inputLabel={`Passenger ${index+2} :`}
+            inputType="text"
+            inputName={`passenger${index+2}`}
+            inputValue={formValues[`passenger${index+2}`]}
+            onHandleChange={handleChange}
+            errorMessage={formErrors[`passenger${index+2}`]}
+            errorClass={"error_para"}
+            customClass={"form_input bookticket_name_input"}
+            key={index}
+          />)
+          }
+          <div className="bookticket_inputbox">
+            <div className="bookticket_dropdown">
+              <label htmlFor="airlinename">Select Airline :</label>
+              <select
+                name="airlinename"
+                id="airlinename"
+                onChange={handleChange}
+              >
                 <option value="Quatar Airways">Quatar Airways</option>
                 <option value="Singapore Airlines">Singapore Airlines</option>
                 <option value="Emirates">Emirates</option>
@@ -130,7 +212,7 @@ const BookTicket = () => {
               min={today}
             />
           </div>
-          <div className='bookticket_inputbox'>
+          <div className="bookticket_inputbox">
             <FormInput
               inputLabel="Departure Location :"
               inputType="text"
@@ -160,7 +242,7 @@ const BookTicket = () => {
         </form>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default BookTicket
+export default BookTicket;
