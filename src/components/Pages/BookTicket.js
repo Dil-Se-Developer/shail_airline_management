@@ -34,9 +34,10 @@ const BookTicket = () => {
     setFormValues({ ...formValues, [name]: value });
   };
 
-  const extraPassengers = new Array(formValues.seats ? parseInt(formValues.seats)-1: '').fill('');
+  // const extraPassengers = new Array(formValues.seats ? parseInt(formValues.seats)-1: '').fill('');
+  const extraPassengers = (parseInt(formValues.seats) === 2 || parseInt(formValues.seats) === 3) ?  new Array(parseInt(formValues.seats)-1).fill('') : '';
   // console.log(formValues, "formvalues");
-  // console.log(extraPassengers,'extrapassengers');
+  // console.log(extraPassengers.length,'extrapassengers');
   // console.log(formErrors, 'errors');
 
   const bookTicketHandler = (event) => {
