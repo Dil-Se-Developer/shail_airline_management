@@ -7,6 +7,9 @@ import {
 import { loginUserActions } from "../../redux/actions/loginUserActions";
 import { bookTicketActions } from "../../redux/actions/bookTicketActions";
 import { singleUserDataActions } from "../../redux/actions/singleUserDataActions";
+import { loginUserStatusSetActions, loginUserStatusGetActions } from "../../redux/actions/loginUserActions";
+import { bookTicketSetActions, bookTicketGetActions } from "../../redux/actions/bookTicketActions";
+import { singleUserSetActions, singleUserGetActions } from "../../redux/actions/singleUserDataActions";
 import { useNavigate } from "react-router-dom";
 import FormInput from "../UI/FormInput";
 import "./RegisterForm.css";
@@ -49,9 +52,15 @@ const RegisterForm = ({ saveAuth }) => {
     if (Object.keys(validate(formValues)).length === 0) {
       // console.log(formErrors, "error");
       dispatch(addUserData(formValues));
-      dispatch(singleUserDataActions(formValues));
-      dispatch(loginUserActions(true));
-      dispatch(bookTicketActions(true));
+      // dispatch(singleUserDataActions(formValues));
+      dispatch(singleUserSetActions(formValues));
+      // localStorage.setItem("singleUserData", JSON.stringify(formValues));
+      // dispatch(loginUserActions(true));
+      // dispatch(bookTicketActions(true));
+      dispatch(loginUserStatusSetActions(true));
+      dispatch(bookTicketSetActions(true));
+      // localStorage.setItem("loginStaus", JSON.stringify(true));
+      localStorage.setItem("bookTicketStatus", JSON.stringify(true));
       saveAuth('auth');
       Navigate("/dashboard");
     }
@@ -59,8 +68,15 @@ const RegisterForm = ({ saveAuth }) => {
 
   useEffect(() => {
     dispatch(fetchUsersAction());
-    dispatch(loginUserActions(false));
-    dispatch(bookTicketActions(false));
+    // dispatch(loginUserActions(false));
+    // dispatch(bookTicketActions(false));
+    dispatch(loginUserStatusSetActions(false));
+    dispatch(bookTicketSetActions(false));
+    // localStorage.setItem("loginStaus", JSON.stringify(false));
+    // localStorage.setItem("bookTicketStatus", JSON.stringify(false));
+    dispatch(loginUserStatusGetActions());
+    dispatch(bookTicketGetActions());
+    dispatch(singleUserGetActions());
   }, []);
 
   // console.log(formErrors, "error");

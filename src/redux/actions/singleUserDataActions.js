@@ -6,3 +6,17 @@ export const singleUserDataActions = (payload) => {
         payload: payload
     }
 }
+
+export const singleUserSetActions = (payload) => {
+    return {
+        type: ActionTypes.SINGLE_USER_SET_DATA,
+        payload:payload
+    }
+}
+
+
+export const singleUserGetActions = () => {
+    return {
+        type: ActionTypes.SINGLE_USER_GET_DATA
+    }
+}

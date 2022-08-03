@@ -2,8 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchUsersAction } from "../../redux/actions/fetchUsersDataActions";
 import { loginUserActions } from "../../redux/actions/loginUserActions";
+import { loginUserStatusSetActions, loginUserStatusGetActions } from "../../redux/actions/loginUserActions";
 import { bookTicketActions } from "../../redux/actions/bookTicketActions";
+import { bookTicketSetActions, bookTicketGetActions } from "../../redux/actions/bookTicketActions";
 import { singleUserDataActions } from "../../redux/actions/singleUserDataActions";
+import { singleUserSetActions, singleUserGetActions } from "../../redux/actions/singleUserDataActions";
 import { useNavigate, Link } from "react-router-dom";
 import FormInput from "../UI/FormInput";
 import "./LoginForm.css";
@@ -37,13 +40,19 @@ const LoginForm = ({ saveAuth }) => {
         const findUser = usersData.find(
           (userData) => userData.emailid === formValues.emailid
         );
-        dispatch(singleUserDataActions(findUser));
+        // dispatch(singleUserDataActions(findUser));
+        dispatch(singleUserSetActions(findUser));
+        // localStorage.setItem("singleUserData", JSON.stringify(findUser));
         // console.log(findUser.password, "find");
         // console.log(formValues.password, 'formval');
         if (findUser.password === formValues.password) {
-          dispatch(loginUserActions(true));
-          dispatch(bookTicketActions(true));
-          saveAuth('auth');
+          dispatch(loginUserStatusSetActions(true));
+          dispatch(bookTicketSetActions(true));
+          // dispatch(loginUserActions(true));
+          // dispatch(bookTicketActions(true));
+          // localStorage.setItem("loginStaus", JSON.stringify(true));
+          localStorage.setItem("bookTicketStatus", JSON.stringify(true));
+          saveAuth("auth");
           Navigate("/dashboard");
         } else {
           alert("Kindly Check Password");
@@ -63,8 +72,15 @@ const LoginForm = ({ saveAuth }) => {
 
   useEffect(() => {
     dispatch(fetchUsersAction());
-    dispatch(loginUserActions(false));
-    dispatch(bookTicketActions(false));
+    // dispatch(loginUserActions(false));
+    // dispatch(bookTicketActions(false));
+    dispatch(loginUserStatusSetActions(false));
+    dispatch(bookTicketSetActions(false));
+    // localStorage.setItem("loginStaus", JSON.stringify(false));
+    // localStorage.setItem("bookTicketStatus", JSON.stringify(false));
+    dispatch(loginUserStatusGetActions());
+    dispatch(bookTicketGetActions());
+    dispatch(singleUserGetActions());
   }, []);
 
   const validate = (values) => {

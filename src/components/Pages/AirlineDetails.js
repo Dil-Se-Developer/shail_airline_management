@@ -3,6 +3,9 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { bookTicketActions } from "../../redux/actions/bookTicketActions";
+import { loginUserStatusGetActions } from "../../redux/actions/loginUserActions";
+import { bookTicketGetActions } from "../../redux/actions/bookTicketActions";
+import { singleUserGetActions } from "../../redux/actions/singleUserDataActions";
 import "./AirlineDetails.css";
 
 const AirlineDetails = () => {
@@ -12,7 +15,11 @@ const AirlineDetails = () => {
   // console.log(airlineId);
 
   useEffect(() => {
-    dispatch(bookTicketActions(true));
+    dispatch(loginUserStatusGetActions());
+    dispatch(bookTicketGetActions());
+    dispatch(singleUserGetActions());
+    // dispatch(bookTicketActions(true));
+    // localStorage.setItem("bookTicketStatus", JSON.stringify(true));
     axios
       .get(`http://localhost:5000/airlinesdata/${airlineId}`)
       .then((res) => setAirlineData(res.data))

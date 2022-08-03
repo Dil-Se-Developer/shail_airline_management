@@ -1,15 +1,26 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import logo from "../../assets/air_india_logo.svg";
 import { loginUserActions } from "../../redux/actions/loginUserActions";
+import { loginUserStatusGetActions } from "../../redux/actions/loginUserActions";
 import { bookTicketActions } from "../../redux/actions/bookTicketActions";
+import { bookTicketSetActions } from "../../redux/actions/bookTicketActions";
 import { MdAirplaneTicket } from "react-icons/md";
 import "./Navbar.css";
 
 const Navbar = ({ setAuth }) => {
-  const dispatch = useDispatch();
+  // const [loginStatus, setLoginStatus] = useState(false);
+  // const [bookTicketStatus, setBookTicketStatus] = useState(false);
+  // const [singleUserData, setSingleUserData] = useState({});
+
   const Navigate = useNavigate();
+
+  const dispatch = useDispatch();
+
+  
+  // dispatch(loginUserStatusGetActions())
+
   const loginStatus = useSelector((state) => state.loginStatus.loginStatus);
   const bookTicketStatus = useSelector(
     (state) => state.bookTicketStatus.bookTicketStatus
@@ -18,7 +29,18 @@ const Navbar = ({ setAuth }) => {
     (state) => state.singleUserData.singleUserData
   );
 
-  const userFirstName = singleUserData.firstname;
+  // useEffect(() => {
+  //   // dispatch(loginUserStatusGetActions())
+  //   // const loginState = localStorage.getItem("loginStaus");
+  //   const bookTicketState = localStorage.getItem("bookTicketStatus");
+  //   const singleUserState = localStorage.getItem("singleUserData");
+  //   // setLoginStatus(JSON.parse(loginState));
+  //   setBookTicketStatus(JSON.parse(bookTicketState));
+  //   setSingleUserData(JSON.parse(singleUserState));
+  // }, [])
+
+  // console.log(loginStatus, 'login');
+  const userFirstName = singleUserData?.firstname;
   // console.log(userFirstName);
   // console.log(singleUserData);
   // console.log(loginStatus, "login");
@@ -34,7 +56,9 @@ const Navbar = ({ setAuth }) => {
 
   const bookTicketHandler = () => {
     Navigate("dashboard/bookticket");
-    dispatch(bookTicketActions(false));
+    // dispatch(bookTicketActions(false));
+    dispatch(bookTicketSetActions(false));
+    // localStorage.setItem("bookTicketStatus", JSON.stringify(false));
   };
 
   const handleSelectChange = (event) => {
@@ -42,8 +66,8 @@ const Navbar = ({ setAuth }) => {
     if (value === "logout") {
       localStorage.clear();
       setAuth();
-      dispatch(loginUserActions(false));
-      dispatch(bookTicketActions(false));
+      // dispatch(loginUserActions(false));
+      // dispatch(bookTicketActions(false));
       Navigate("/");
     }
   };

@@ -8,8 +8,18 @@ export const bookTicketReducer = (state = defaultBookTicketState, { type, payloa
     switch (type) {
         case ActionTypes.BOOK_TICKET_STATUS:
             return {
+                ...state
+            }
+        case ActionTypes.BOOK_TICKET_STATUS_SET:
+            localStorage.setItem("bookTicketStatus", JSON.stringify(payload));
+            return {
+                ...state
+            }
+        case ActionTypes.BOOK_TICKET_STATUS_GET:
+            const bookState = localStorage.getItem("bookTicketStatus");
+            return {
                 ...state,
-                bookTicketStatus: payload
+                bookTicketStatus: JSON.parse(bookState)
             }
         default:
             return state

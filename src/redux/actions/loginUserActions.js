@@ -7,3 +7,19 @@ export const loginUserActions = (payload) => {
     }
 }
 
+export const loginUserStatusSetActions = (payload) => {
+    return {
+        type: ActionTypes.LOGIN_STATUS_SET,
+        payload:payload
+    }
+}
+
+
+export const loginUserStatusGetActions = () => {
+    return {
+        type: ActionTypes.LOGIN_STATUS_GET
+    }
+}
+
+
+

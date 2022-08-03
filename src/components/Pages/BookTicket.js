@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { bookTicketActions } from "../../redux/actions/bookTicketActions";
+import { bookTicketGetActions, bookTicketSetActions } from "../../redux/actions/bookTicketActions";
+import { loginUserStatusGetActions } from "../../redux/actions/loginUserActions";
 import { bookTicketDetailActions } from "../../redux/actions/bookTicketDetailActions";
+import { singleUserGetActions } from "../../redux/actions/singleUserDataActions";
 import FormInput from "../UI/FormInput";
 import "./BookTicket.css";
 
@@ -26,7 +29,12 @@ const BookTicket = () => {
   const [formErrors, setFormErrors] = useState({});
 
   useEffect(() => {
-    dispatch(bookTicketActions(false));
+    dispatch(bookTicketSetActions(false))
+    dispatch(bookTicketGetActions());
+    dispatch(loginUserStatusGetActions());
+    dispatch(singleUserGetActions());
+    // dispatch(bookTicketActions(false));
+    // localStorage.setItem("bookTicketStatus", JSON.stringify(false));
   }, []);
 
   const handleChange = (event) => {
@@ -45,6 +53,7 @@ const BookTicket = () => {
     setFormErrors(validate(formValues));
     if (Object.keys(validate(formValues)).length === 0) {
       dispatch(bookTicketDetailActions(formValues));
+      localStorage.setItem("ticketDetails", JSON.stringify(formValues));
       Navigate("bookticketdetails");
     }
   };
