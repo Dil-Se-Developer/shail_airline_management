@@ -97,7 +97,7 @@ const Navbar = ({ setAuth }) => {
               <option value="greetings">Hi,{userFirstName}!</option>
               <option value="logout">Logout</option>
             </select>
-          </div>
+          </div> 
           {bookTicketStatus ? (
             <div>
               <button className="book_ticket_btn" onClick={bookTicketHandler}>

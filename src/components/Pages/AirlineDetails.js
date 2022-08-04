@@ -4,7 +4,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { bookTicketActions } from "../../redux/actions/bookTicketActions";
 import { loginUserStatusGetActions } from "../../redux/actions/loginUserActions";
-import { bookTicketGetActions } from "../../redux/actions/bookTicketActions";
+import { bookTicketSetActions, bookTicketGetActions } from "../../redux/actions/bookTicketActions";
 import { singleUserGetActions } from "../../redux/actions/singleUserDataActions";
 import "./AirlineDetails.css";
 
@@ -18,6 +18,7 @@ const AirlineDetails = () => {
     dispatch(loginUserStatusGetActions());
     dispatch(bookTicketGetActions());
     dispatch(singleUserGetActions());
+    dispatch(bookTicketSetActions(true))
     // dispatch(bookTicketActions(true));
     // localStorage.setItem("bookTicketStatus", JSON.stringify(true));
     axios

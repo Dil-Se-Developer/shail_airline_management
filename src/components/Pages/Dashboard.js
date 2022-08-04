@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import AirlineCard from "./AirlineCard";
 import { fetchAirlinesDataAction } from "../../redux/actions/fetchAirlinesDataActions";
 import { loginUserStatusGetActions } from "../../redux/actions/loginUserActions";
-import { bookTicketGetActions } from "../../redux/actions/bookTicketActions";
+import { bookTicketSetActions, bookTicketGetActions } from "../../redux/actions/bookTicketActions";
 import { bookTicketActions } from "../../redux/actions/bookTicketActions";
 import { singleUserGetActions } from "../../redux/actions/singleUserDataActions";
 import "./Dashboard.css";
@@ -17,8 +17,9 @@ const Dashboard = () => {
     dispatch(loginUserStatusGetActions());
     dispatch(bookTicketGetActions());
     dispatch(singleUserGetActions());
+    dispatch(bookTicketSetActions(true));
     // dispatch(bookTicketActions(true));
-    localStorage.setItem("bookTicketStatus", JSON.stringify(true));
+    // localStorage.setItem("bookTicketStatus", JSON.stringify(true));
   }, [])
 
   const airlinesData = useSelector((state) => state.airlinesData.AirlinesData);

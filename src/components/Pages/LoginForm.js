@@ -51,7 +51,7 @@ const LoginForm = ({ saveAuth }) => {
           // dispatch(loginUserActions(true));
           // dispatch(bookTicketActions(true));
           // localStorage.setItem("loginStaus", JSON.stringify(true));
-          localStorage.setItem("bookTicketStatus", JSON.stringify(true));
+          // localStorage.setItem("bookTicketStatus", JSON.stringify(true));
           saveAuth("auth");
           Navigate("/dashboard");
         } else {

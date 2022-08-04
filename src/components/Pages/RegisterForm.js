@@ -60,7 +60,7 @@ const RegisterForm = ({ saveAuth }) => {
       dispatch(loginUserStatusSetActions(true));
       dispatch(bookTicketSetActions(true));
       // localStorage.setItem("loginStaus", JSON.stringify(true));
-      localStorage.setItem("bookTicketStatus", JSON.stringify(true));
+      // localStorage.setItem("bookTicketStatus", JSON.stringify(true));
       saveAuth('auth');
       Navigate("/dashboard");
     }
