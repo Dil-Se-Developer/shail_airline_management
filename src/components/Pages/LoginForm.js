@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchUsersAction } from "../../redux/actions/fetchUsersDataActions";
-import { loginUserActions } from "../../redux/actions/loginUserActions";
 import { loginUserStatusSetActions, loginUserStatusGetActions } from "../../redux/actions/loginUserActions";
-import { bookTicketActions } from "../../redux/actions/bookTicketActions";
 import { bookTicketSetActions, bookTicketGetActions } from "../../redux/actions/bookTicketActions";
-import { singleUserDataActions } from "../../redux/actions/singleUserDataActions";
 import { singleUserSetActions, singleUserGetActions } from "../../redux/actions/singleUserDataActions";
 import { useNavigate, Link } from "react-router-dom";
 import FormInput from "../UI/FormInput";
@@ -22,10 +19,7 @@ const LoginForm = ({ saveAuth }) => {
   const Navigate = useNavigate();
   const [formValues, setFormValues] = useState(intialValues);
   const [formErrors, setFormErrors] = useState({});
-  const usersData = useSelector((state) => state.fetchUsersData.UsersData);
-  // const airlinesData = useSelector((state) => state.airlinesData.AirlinesData);
-  // console.log(airlinesData, 'loginform');
-  // console.log(usersData);
+  const usersData = useSelector((state) => state.userData.UsersData);
 
   const loginHandler = (event) => {
     event.preventDefault();
@@ -33,25 +27,16 @@ const LoginForm = ({ saveAuth }) => {
 
     if (Object.keys(validate(formValues)).length === 0) {
       const usersEmail = usersData.map((user) => user.emailid);
-      // const usersPassword = usersData.map((user) => user.password);
       const userExist = usersEmail.includes(formValues.emailid);
 
       if (userExist) {
         const findUser = usersData.find(
           (userData) => userData.emailid === formValues.emailid
         );
-        // dispatch(singleUserDataActions(findUser));
         dispatch(singleUserSetActions(findUser));
-        // localStorage.setItem("singleUserData", JSON.stringify(findUser));
-        // console.log(findUser.password, "find");
-        // console.log(formValues.password, 'formval');
         if (findUser.password === formValues.password) {
           dispatch(loginUserStatusSetActions(true));
           dispatch(bookTicketSetActions(true));
-          // dispatch(loginUserActions(true));
-          // dispatch(bookTicketActions(true));
-          // localStorage.setItem("loginStaus", JSON.stringify(true));
-          // localStorage.setItem("bookTicketStatus", JSON.stringify(true));
           saveAuth("auth");
           Navigate("/dashboard");
         } else {
@@ -72,12 +57,6 @@ const LoginForm = ({ saveAuth }) => {
 
   useEffect(() => {
     dispatch(fetchUsersAction());
-    // dispatch(loginUserActions(false));
-    // dispatch(bookTicketActions(false));
-    dispatch(loginUserStatusSetActions(false));
-    dispatch(bookTicketSetActions(false));
-    // localStorage.setItem("loginStaus", JSON.stringify(false));
-    // localStorage.setItem("bookTicketStatus", JSON.stringify(false));
     dispatch(loginUserStatusGetActions());
     dispatch(bookTicketGetActions());
     dispatch(singleUserGetActions());

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { bookTicketGetActions} from "../../redux/actions/bookTicketActions";
 import { loginUserStatusGetActions } from "../../redux/actions/loginUserActions";
 import { singleUserGetActions } from "../../redux/actions/singleUserDataActions";
@@ -9,7 +9,6 @@ import "./BookTicketDetails.css";
 
 const BookTicketDetails = () => {
   const dispatch = useDispatch();
-  // const bookTicketDetails = useSelector((state) => state.bookTicketDetails.bookTicketDetails)
   const [bookTicketDetails, setBookTicketDetails] = useState({});
   useEffect(() => {
     const ticketDetail = localStorage.getItem("ticketDetails");
@@ -19,8 +18,6 @@ const BookTicketDetails = () => {
     dispatch(singleUserGetActions());
   }, []);
 
-  // console.log(JSON.parse(ticketDetail));
-  // console.log(bookTicketDetails);
   const {
     name,
     emailid,
@@ -32,8 +29,9 @@ const BookTicketDetails = () => {
     passenger2,
     passenger3,
   } = bookTicketDetails;
+  
   const dateTimeUpdated = new Date(datetime);
-  // console.log(dateTimeUpdated.toLocaleString(), 'time');
+  
 
   return (
     <>

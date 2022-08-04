@@ -4,9 +4,6 @@ import {
   addUserData,
   fetchUsersAction,
 } from "../../redux/actions/fetchUsersDataActions";
-import { loginUserActions } from "../../redux/actions/loginUserActions";
-import { bookTicketActions } from "../../redux/actions/bookTicketActions";
-import { singleUserDataActions } from "../../redux/actions/singleUserDataActions";
 import { loginUserStatusSetActions, loginUserStatusGetActions } from "../../redux/actions/loginUserActions";
 import { bookTicketSetActions, bookTicketGetActions } from "../../redux/actions/bookTicketActions";
 import { singleUserSetActions, singleUserGetActions } from "../../redux/actions/singleUserDataActions";
@@ -29,7 +26,7 @@ const RegisterForm = ({ saveAuth }) => {
   const Navigate = useNavigate();
   const [formValues, setFormValues] = useState(intialValues);
   const [formErrors, setFormErrors] = useState({});
-  const usersData = useSelector((state) => state.fetchUsersData.UsersData);
+  const usersData = useSelector((state) => state.userData.UsersData);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -39,10 +36,8 @@ const RegisterForm = ({ saveAuth }) => {
   const registerHandler = (event) => {
     event.preventDefault();
     setFormErrors(validate(formValues));
-    // const userEmaild = usersData.find((e) => e.emailid === formValues.emailid);
     const userEmaild = usersData.map((user) => user.emailid);
     const userEmaildExist = userEmaild.includes(formValues.emailid);
-    // console.log(userEmaildExist);
 
     if (userEmaildExist) {
       alert("user already exit");
@@ -50,17 +45,10 @@ const RegisterForm = ({ saveAuth }) => {
     }
 
     if (Object.keys(validate(formValues)).length === 0) {
-      // console.log(formErrors, "error");
       dispatch(addUserData(formValues));
-      // dispatch(singleUserDataActions(formValues));
       dispatch(singleUserSetActions(formValues));
-      // localStorage.setItem("singleUserData", JSON.stringify(formValues));
-      // dispatch(loginUserActions(true));
-      // dispatch(bookTicketActions(true));
       dispatch(loginUserStatusSetActions(true));
       dispatch(bookTicketSetActions(true));
-      // localStorage.setItem("loginStaus", JSON.stringify(true));
-      // localStorage.setItem("bookTicketStatus", JSON.stringify(true));
       saveAuth('auth');
       Navigate("/dashboard");
     }
@@ -68,19 +56,11 @@ const RegisterForm = ({ saveAuth }) => {
 
   useEffect(() => {
     dispatch(fetchUsersAction());
-    // dispatch(loginUserActions(false));
-    // dispatch(bookTicketActions(false));
-    dispatch(loginUserStatusSetActions(false));
-    dispatch(bookTicketSetActions(false));
-    // localStorage.setItem("loginStaus", JSON.stringify(false));
-    // localStorage.setItem("bookTicketStatus", JSON.stringify(false));
     dispatch(loginUserStatusGetActions());
     dispatch(bookTicketGetActions());
     dispatch(singleUserGetActions());
   }, []);
 
-  // console.log(formErrors, "error");
-  // console.log(usersData);
 
   const validate = (values) => {
     const errors = {};

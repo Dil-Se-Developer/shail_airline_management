@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { bookTicketActions } from "../../redux/actions/bookTicketActions";
 import { bookTicketGetActions, bookTicketSetActions } from "../../redux/actions/bookTicketActions";
 import { loginUserStatusGetActions } from "../../redux/actions/loginUserActions";
 import { bookTicketDetailActions } from "../../redux/actions/bookTicketDetailActions";
@@ -11,7 +10,6 @@ import "./BookTicket.css";
 
 const BookTicket = () => {
   const dispatch = useDispatch();
-  // let i = 0;
   const intialValues = {
     name: "",
     emailid: "",
@@ -33,21 +31,15 @@ const BookTicket = () => {
     dispatch(bookTicketGetActions());
     dispatch(loginUserStatusGetActions());
     dispatch(singleUserGetActions());
-    // dispatch(bookTicketActions(false));
-    // localStorage.setItem("bookTicketStatus", JSON.stringify(false));
   }, []);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormValues({ ...formValues, [name]: value });
   };
-
-  // const extraPassengers = new Array(formValues.seats ? parseInt(formValues.seats)-1: '').fill('');
+  
   const extraPassengers = (parseInt(formValues.seats) === 2 || parseInt(formValues.seats) === 3) ?  new Array(parseInt(formValues.seats)-1).fill('') : '';
-  // console.log(formValues, "formvalues");
-  // console.log(extraPassengers.length,'extrapassengers');
-  // console.log(formErrors, 'errors');
-
+  
   const bookTicketHandler = (event) => {
     event.preventDefault();
     setFormErrors(validate(formValues));
@@ -89,7 +81,6 @@ const BookTicket = () => {
   };
 
   const today = `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`;
-  // console.log(today);
 
   return (
     <div className="bookticket_bg">
@@ -129,60 +120,7 @@ const BookTicket = () => {
               max={3}
             />
           </div>
-          {/* {parseInt(formValues.seats) === 2 ? (
-            <FormInput
-              inputLabel="Name :"
-              inputType="text"
-              inputName="name"
-              inputValue={formValues.name}
-              onHandleChange={handleChange}
-              errorMessage={formErrors.name}
-              errorClass={"error_para"}
-              customClass={"form_input bookticket_name_input"}
-            />
-          ) : parseInt(formValues.seats) === 3 ? (
-            <>
-            <FormInput
-              inputLabel="Name :"
-              inputType="text"
-              inputName="name"
-              inputValue={formValues.name}
-              onHandleChange={handleChange}
-              errorMessage={formErrors.name}
-              errorClass={"error_para"}
-              customClass={"form_input bookticket_name_input"}
-            />
-            <FormInput
-              inputLabel="Name :"
-              inputType="text"
-              inputName="name"
-              inputValue={formValues.name}
-              onHandleChange={handleChange}
-              errorMessage={formErrors.name}
-              errorClass={"error_para"}
-              customClass={"form_input bookticket_name_input"}
-            />
-            </>
-          ) : (
-            <div></div>
-          )} */}
-          
-          {/* { 
-            let i = 0;
-            while(i < parseInt(formValues.seats)) {    
-              (<FormInput
-              inputLabel="Name :"
-              inputType="text"
-              inputName="name"
-              inputValue={formValues.name}
-              onHandleChange={handleChange}
-              errorMessage={formErrors.name}
-              errorClass={"error_para"}
-              customClass={"form_input bookticket_name_input"}
-            />)
-            i++;
-            }
-          } */}
+
           {extraPassengers.length >= 1 && extraPassengers.length <= 2 && 
             extraPassengers.map((extraPassenger, index) => <FormInput
             inputLabel={`Passenger ${index+2} :`}
@@ -214,7 +152,6 @@ const BookTicket = () => {
               inputLabel="Select Date and Time :"
               inputType="datetime-local"
               inputName="datetime"
-              // inputValue={formValues.datetime}
               onHandleChange={handleChange}
               errorMessage={formErrors.datetime}
               errorClass={"error_para"}

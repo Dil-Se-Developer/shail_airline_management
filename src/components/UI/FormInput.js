@@ -27,7 +27,7 @@ const FormInput = (props) => {
           value={inputValue}
           onChange={onHandleChange}
           checked={checked}
-          autoComplete = 'off'
+          autoComplete = {inputType === 'password' ? 'off' : 'on'}
           min={min}
           max={max}
         />

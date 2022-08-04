@@ -15,7 +15,6 @@ const AirlineCard = ({ airlineFilterData }) => {
         {name} ({established})
       </h2>
       <h3>{country} </h3>
-      {/* <p>{established}</p> */}
     </div>
   );
 };
