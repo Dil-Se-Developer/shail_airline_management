@@ -2,7 +2,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import logo from "../../assets/air_india_logo.svg";
-import { bookTicketSetActions } from "../../redux/actions/bookTicketActions";
+// import { bookTicketSetActions } from "../../redux/actions/bookTicketActions";
+import { setBookTicketStatus } from '../../redux_toolkit/slices/airlinesDataSlice';
 import { MdAirplaneTicket } from "react-icons/md";
 import "./Navbar.css";
 
@@ -32,7 +33,7 @@ const Navbar = ({ setAuth }) => {
 
   const bookTicketHandler = () => {
     Navigate("dashboard/bookticket");
-    dispatch(bookTicketSetActions(false));
+    dispatch(setBookTicketStatus(false));
   };
 
   const handleSelectChange = (event) => {
@@ -69,7 +70,7 @@ const Navbar = ({ setAuth }) => {
               <option value="greetings">Hi, {userFirstName}! </option>
               <option value="logout">Logout</option>
             </select>
-          </div> 
+          </div>
           {bookTicketStatus ? (
             <div>
               <button className="book_ticket_btn" onClick={bookTicketHandler}>

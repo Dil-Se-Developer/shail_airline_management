@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { bookTicketGetActions} from "../../redux/actions/bookTicketActions";
-import { loginUserStatusGetActions } from "../../redux/actions/loginUserActions";
-import { singleUserGetActions } from "../../redux/actions/singleUserDataActions";
+// import { bookTicketGetActions} from "../../redux/actions/bookTicketActions";
+// import { loginUserStatusGetActions } from "../../redux/actions/loginUserActions";
+// import { singleUserGetActions } from "../../redux/actions/singleUserDataActions";
+import { getLoginUserStatus, getSingleUser } from '../../redux_toolkit/slices/userDataSlice';
+import { getBookTicketStatus } from '../../redux_toolkit/slices/airlinesDataSlice';
 import { MdAirplaneTicket } from "react-icons/md";
 import "./BookTicketDetails.css";
 
@@ -13,9 +15,9 @@ const BookTicketDetails = () => {
   useEffect(() => {
     const ticketDetail = localStorage.getItem("ticketDetails");
     setBookTicketDetails(JSON.parse(ticketDetail));
-    dispatch(bookTicketGetActions());
-    dispatch(loginUserStatusGetActions());
-    dispatch(singleUserGetActions());
+    dispatch(getLoginUserStatus());
+    dispatch(getBookTicketStatus());
+    dispatch(getSingleUser());
   }, []);
 
   const {
@@ -29,9 +31,9 @@ const BookTicketDetails = () => {
     passenger2,
     passenger3,
   } = bookTicketDetails;
-  
+
   const dateTimeUpdated = new Date(datetime);
-  
+
 
   return (
     <>

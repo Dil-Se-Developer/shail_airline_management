@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { bookTicketGetActions, bookTicketSetActions } from "../../redux/actions/bookTicketActions";
-import { loginUserStatusGetActions } from "../../redux/actions/loginUserActions";
-import { bookTicketDetailActions } from "../../redux/actions/bookTicketDetailActions";
-import { singleUserGetActions } from "../../redux/actions/singleUserDataActions";
+// import { bookTicketGetActions, bookTicketSetActions } from "../../redux/actions/bookTicketActions";
+// import { loginUserStatusGetActions } from "../../redux/actions/loginUserActions";
+// import { bookTicketDetailActions } from "../../redux/actions/bookTicketDetailActions";
+// import { singleUserGetActions } from "../../redux/actions/singleUserDataActions";
+import { getLoginUserStatus , getSingleUser } from '../../redux_toolkit/slices/userDataSlice';
+import { setBookTicketStatus, getBookTicketStatus, bookTicketDetail } from '../../redux_toolkit/slices/airlinesDataSlice';
 import FormInput from "../UI/FormInput";
 import "./BookTicket.css";
 
@@ -27,10 +29,10 @@ const BookTicket = () => {
   const [formErrors, setFormErrors] = useState({});
 
   useEffect(() => {
-    dispatch(bookTicketSetActions(false))
-    dispatch(bookTicketGetActions());
-    dispatch(loginUserStatusGetActions());
-    dispatch(singleUserGetActions());
+    dispatch(setBookTicketStatus(false))
+    dispatch(getLoginUserStatus());
+    dispatch(getBookTicketStatus());
+    dispatch(getSingleUser());
   }, []);
 
   const handleChange = (event) => {
@@ -44,7 +46,7 @@ const BookTicket = () => {
     event.preventDefault();
     setFormErrors(validate(formValues));
     if (Object.keys(validate(formValues)).length === 0) {
-      dispatch(bookTicketDetailActions(formValues));
+      dispatch(bookTicketDetail(formValues));
       localStorage.setItem("ticketDetails", JSON.stringify(formValues));
       Navigate("bookticketdetails");
     }

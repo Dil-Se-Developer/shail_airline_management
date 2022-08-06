@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchUsersAction } from "../../redux/actions/fetchUsersDataActions";
-import { loginUserStatusSetActions, loginUserStatusGetActions } from "../../redux/actions/loginUserActions";
-import { bookTicketSetActions, bookTicketGetActions } from "../../redux/actions/bookTicketActions";
-import { singleUserSetActions, singleUserGetActions } from "../../redux/actions/singleUserDataActions";
+// import { fetchUsersAction } from "../../redux/actions/fetchUsersDataActions";
+// import { loginUserStatusSetActions, loginUserStatusGetActions } from "../../redux/actions/loginUserActions";
+// import { bookTicketSetActions, bookTicketGetActions } from "../../redux/actions/bookTicketActions";
+// import { singleUserSetActions, singleUserGetActions } from "../../redux/actions/singleUserDataActions";
+import { fetchUsers, setLoginUserStatus, getLoginUserStatus, setSingleUser, getSingleUser } from '../../redux_toolkit/slices/userDataSlice';
+import { setBookTicketStatus, getBookTicketStatus } from '../../redux_toolkit/slices/airlinesDataSlice';
 import { useNavigate, Link } from "react-router-dom";
 import FormInput from "../UI/FormInput";
 import "./LoginForm.css";
@@ -33,10 +35,10 @@ const LoginForm = ({ saveAuth }) => {
         const findUser = usersData.find(
           (userData) => userData.emailid === formValues.emailid
         );
-        dispatch(singleUserSetActions(findUser));
+        dispatch(setSingleUser(findUser));
         if (findUser.password === formValues.password) {
-          dispatch(loginUserStatusSetActions(true));
-          dispatch(bookTicketSetActions(true));
+          dispatch(setLoginUserStatus(true));
+          dispatch(setBookTicketStatus(true));
           saveAuth("auth");
           Navigate("/dashboard");
         } else {
@@ -56,10 +58,10 @@ const LoginForm = ({ saveAuth }) => {
   // console.log(formValues);
 
   useEffect(() => {
-    dispatch(fetchUsersAction());
-    dispatch(loginUserStatusGetActions());
-    dispatch(bookTicketGetActions());
-    dispatch(singleUserGetActions());
+    dispatch(fetchUsers());
+    dispatch(getLoginUserStatus());
+    dispatch(getBookTicketStatus());
+    dispatch(getSingleUser());
   }, []);
 
   const validate = (values) => {

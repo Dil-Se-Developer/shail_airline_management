@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { loginUserStatusGetActions } from "../../redux/actions/loginUserActions";
-import { bookTicketSetActions, bookTicketGetActions } from "../../redux/actions/bookTicketActions";
-import { singleUserGetActions } from "../../redux/actions/singleUserDataActions";
+// import { loginUserStatusGetActions } from "../../redux/actions/loginUserActions";
+// import { bookTicketSetActions, bookTicketGetActions } from "../../redux/actions/bookTicketActions";
+// import { singleUserGetActions } from "../../redux/actions/singleUserDataActions";
+import { getLoginUserStatus, getSingleUser } from '../../redux_toolkit/slices/userDataSlice';
+import { setBookTicketStatus, getBookTicketStatus } from '../../redux_toolkit/slices/airlinesDataSlice';
 import "./AirlineDetails.css";
 
 const AirlineDetails = () => {
@@ -13,10 +15,10 @@ const AirlineDetails = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(loginUserStatusGetActions());
-    dispatch(bookTicketGetActions());
-    dispatch(singleUserGetActions());
-    dispatch(bookTicketSetActions(true));
+    dispatch(getLoginUserStatus());
+    dispatch(getBookTicketStatus());
+    dispatch(getSingleUser());
+    dispatch(setBookTicketStatus(true));
   
     axios
       .get(`http://localhost:5000/airlinesdata/${airlineId}`)

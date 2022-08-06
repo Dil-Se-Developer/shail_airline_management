@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  addUserData,
-  fetchUsersAction,
-} from "../../redux/actions/fetchUsersDataActions";
-import { loginUserStatusSetActions, loginUserStatusGetActions } from "../../redux/actions/loginUserActions";
-import { bookTicketSetActions, bookTicketGetActions } from "../../redux/actions/bookTicketActions";
-import { singleUserSetActions, singleUserGetActions } from "../../redux/actions/singleUserDataActions";
+// import {
+//   addUserData,
+//   fetchUsersAction,
+// } from "../../redux/actions/fetchUsersDataActions";
+// import { loginUserStatusSetActions, loginUserStatusGetActions } from "../../redux/actions/loginUserActions";
+// import { bookTicketSetActions, bookTicketGetActions } from "../../redux/actions/bookTicketActions";
+// import { singleUserSetActions, singleUserGetActions } from "../../redux/actions/singleUserDataActions";
+import { addUserData, fetchUsers, setLoginUserStatus, getLoginUserStatus, setSingleUser, getSingleUser } from '../../redux_toolkit/slices/userDataSlice';
+import { setBookTicketStatus, getBookTicketStatus } from '../../redux_toolkit/slices/airlinesDataSlice';
 import { useNavigate } from "react-router-dom";
 import FormInput from "../UI/FormInput";
 import "./RegisterForm.css";
@@ -46,19 +48,19 @@ const RegisterForm = ({ saveAuth }) => {
 
     if (Object.keys(validate(formValues)).length === 0) {
       dispatch(addUserData(formValues));
-      dispatch(singleUserSetActions(formValues));
-      dispatch(loginUserStatusSetActions(true));
-      dispatch(bookTicketSetActions(true));
+      dispatch(setSingleUser(formValues));
+      dispatch(setLoginUserStatus(true));
+      dispatch(setBookTicketStatus(true));
       saveAuth('auth');
       Navigate("/dashboard");
     }
   };
 
   useEffect(() => {
-    dispatch(fetchUsersAction());
-    dispatch(loginUserStatusGetActions());
-    dispatch(bookTicketGetActions());
-    dispatch(singleUserGetActions());
+    dispatch(fetchUsers());
+    dispatch(getLoginUserStatus());
+    dispatch(getBookTicketStatus());
+    dispatch(getSingleUser());
   }, []);
 
 
