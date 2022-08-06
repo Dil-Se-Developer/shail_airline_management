@@ -14,11 +14,10 @@ export const fetchUsers = createAsyncThunk(
 export const addUserData = createAsyncThunk(
     "users/addUser",
     async (data) => {
-        const response = await axios.post(
+        await axios.post(
             `http://localhost:5000/users`,
             data
         );
-        // return response
     }
 );
 
@@ -26,8 +25,7 @@ export const addUserData = createAsyncThunk(
 const defaultUserState = {
     loginStatus: false,
     singleUserData: {},
-    UsersData: [],
-    FetchError: "",
+    UsersData: []
 };
 
 const userDataSlice = createSlice({
