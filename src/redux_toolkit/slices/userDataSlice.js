@@ -32,31 +32,21 @@ const userDataSlice = createSlice({
     name: 'userData',
     initialState: defaultUserState,
     reducers: {
-        setLoginUserStatus(state, { payload }) {
+        setLoginUserStatus: (state, { payload }) => {
             localStorage.setItem("loginStaus", JSON.stringify(payload));
-            return {
-                ...state
-            };
+            return state;
         },
-        getLoginUserStatus(state) {
+        getLoginUserStatus: (state) => {
             const loginState = localStorage.getItem("loginStaus");
-            return {
-                ...state,
-                loginStatus: JSON.parse(loginState),
-            };
+            state.loginStatus = JSON.parse(loginState);
         },
-        setSingleUser(state, { payload }) {
+        setSingleUser: (state, { payload }) => {
             localStorage.setItem("singleUserData", JSON.stringify(payload));
-            return {
-                ...state
-            };
+            return state;
         },
-        getSingleUser(state) {
+        getSingleUser: (state) => {
             const singleState = localStorage.getItem("singleUserData");
-            return {
-                ...state,
-                singleUserData: { ...JSON.parse(singleState) },
-            };
+            state.singleUserData = { ...JSON.parse(singleState) };
         },
     },
     extraReducers: {
@@ -65,7 +55,7 @@ const userDataSlice = createSlice({
         },
         [fetchUsers.fulfilled]: (state, { payload }) => {
             console.log("Fetched UserData Successfully!");
-            return { ...state, UsersData: [...payload] }
+            state.UsersData = [...payload];
         },
         [fetchUsers.rejected]: () => {
             console.log("Rejected UserData");
